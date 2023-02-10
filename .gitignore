@@ -17,6 +17,7 @@ accounts.zip
 accounts1k.zip
 accounts400.zip
 accounts600.zip
+salist.txt
 
 # exception to the rule
 !credentials/.gsuite_only.txt

@@ -42,7 +42,7 @@ def _generate_id(prefix='saf-'):
 
 # List projects using service
 def _get_projects(service):
-    return [i['projectId'] for i in service.projects().list().execute()['projects']]
+    return [i['projectId'] for i in service.projects().list().execute()['projects'] if i['lifecycleState']=='ACTIVE']
 
 # Default batch callback handler
 def _def_batch_resp(id,resp,exception):
@@ -170,7 +170,8 @@ def serviceaccountfactory(
             flow = InstalledAppFlow.from_client_secrets_file(credentials, SCOPES)
 
             # creds = flow.run_local_server(port=0)
-            creds = flow.run_console()
+            # creds = flow.run_console()
+            creds = flow.run_local_server(port=0, open_browser=False)
 
         with open(token, 'wb') as t:
             pickle.dump(creds, t)
